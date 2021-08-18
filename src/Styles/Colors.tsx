@@ -1,0 +1,21 @@
+export type Theme = typeof LIGHT | typeof DARK
+export const LIGHT = "light"
+export const DARK = "dark"
+
+export const LIGHT_LIGHT = "rgb(255,255,255)"
+export const LIGHT_INFO = "rgb(165,229,255)"
+export const LIGHT_PRIMARY = "rgb(0,210,255)"
+export const LIGHT_SECONDARY = "rgb(19,142,162)"
+export const LIGHT_DARK = "rgb(35,46,66)"
+export const LIGHT_SUCCESS = "#4caf4f"
+export const LIGHT_WARNING = "#ff9800"
+export const LIGHT_ERROR = "#f44336"
+
+export const DARK_LIGHT = "#2e383d"
+export const DARK_INFO = "#138ea2"
+export const DARK_PRIMARY = "#00ffff"
+export const DARK_SECONDARY = "#1f4d55"
+export const DARK_DARK = "#232e42"
+export const DARK_SUCCESS = "#4caf4f"
+export const DARK_WARNING = "#ff9800"
+export const DARK_ERROR = "#f44336"
