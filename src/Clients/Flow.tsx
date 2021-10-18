@@ -3,8 +3,12 @@ import { Dispatch } from "../State/Context"
 import { ACTIVATE_NODE, ACTIVATE_WS, ADD_CHILD, CREATE_NODE, DEACTIVATE_NODE, DEACTIVATE_WS, UPDATE_URL } from "../Types"
 
 const BASE_URL = process.env.NODE_ENV === "development"
-	? "http://localhost:81/api"
+	? "localhost:80/api"
 	: "./api"
+
+const WS_URL = process.env.NODE_ENV === "development"
+	? "ws://localhost:80/api/tree"
+	: "ws://./api/tree"
 
 //
 // Fetches tree on each change via websocket connection
@@ -14,7 +18,7 @@ interface SubscribeTree {
 }
 
 export const subscribeTree = ({ dispatch }: SubscribeTree) => {
-	const socket = new WebSocket(`ws://localhost:81/api/tree`)
+	const socket = new WebSocket(WS_URL)
 
 	socket.onmessage = e => {
 		const data = JSON.parse(e.data)
