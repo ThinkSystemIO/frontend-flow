@@ -2,8 +2,9 @@ import { SET_TREE } from "../State/Actions"
 import { Dispatch } from "../State/Context"
 import { ACTIVATE_NODE, ACTIVATE_WS, ADD_CHILD, CREATE_NODE, DEACTIVATE_NODE, DEACTIVATE_WS, UPDATE_URL } from "../Types"
 
-const HTTP_URL = `${window.location.href}/api`
-const WS_URL = `ws://${window.location.host}${window.location.pathname}/api/tree`
+const BASE_URL = `${window.location.host}${window.location.pathname}`
+const HTTP_URL = `http://${BASE_URL}/api`
+const WS_URL = `ws://${BASE_URL}/api/tree`
 
 //
 // Fetches tree on each change via websocket connection
