@@ -2,13 +2,8 @@ import { SET_TREE } from "../State/Actions"
 import { Dispatch } from "../State/Context"
 import { ACTIVATE_NODE, ACTIVATE_WS, ADD_CHILD, CREATE_NODE, DEACTIVATE_NODE, DEACTIVATE_WS, UPDATE_URL } from "../Types"
 
-const BASE_URL = process.env.NODE_ENV === "development"
-	? "localhost:80/api"
-	: "./api"
-
-const WS_URL = process.env.NODE_ENV === "development"
-	? "ws://localhost:80/api/tree"
-	: "ws://./api/tree"
+const HTTP_URL = `${window.location.href}/api`
+const WS_URL = `ws://${window.location.host}${window.location.pathname}/api/tree`
 
 //
 // Fetches tree on each change via websocket connection
@@ -59,7 +54,7 @@ export const createNode = async ({ name, type }: CreateNode): Promise<string | n
 	})
 
 	try {
-		const res = await fetch(BASE_URL, { method: "POST", body })
+		const res = await fetch(HTTP_URL, { method: "POST", body })
 		const cmd: CreateNodeResponse = await res.json()
 		return cmd.data
 	} catch (e) {
@@ -91,7 +86,7 @@ export const addChild = async ({ parent, child, pipeline }: AddChild): Promise<s
 	})
 
 	try {
-		const res = await fetch(BASE_URL, { method: "POST", body })
+		const res = await fetch(HTTP_URL, { method: "POST", body })
 		const cmd: AddChildResponse = await res.json()
 		return cmd.data
 	} catch (e) {
@@ -115,7 +110,7 @@ export const activateNode = async ({ node }: ActivateNode): Promise<Command | nu
 	})
 
 	try {
-		const res = await fetch(BASE_URL, { method: "POST", body })
+		const res = await fetch(HTTP_URL, { method: "POST", body })
 		const cmd: Command = await res.json()
 		return cmd
 	} catch (e) {
@@ -139,7 +134,7 @@ export const deactivateNode = async ({ node }: DeactivateNode): Promise<Command 
 	})
 
 	try {
-		const res = await fetch(BASE_URL, { method: "POST", body })
+		const res = await fetch(HTTP_URL, { method: "POST", body })
 		const cmd: Command = await res.json()
 		return cmd
 	} catch (e) {
@@ -167,7 +162,7 @@ export const activateWS = async ({ node }: ActivateWS): Promise<Command | null> 
 	})
 
 	try {
-		const res = await fetch(BASE_URL, { method: "POST", body })
+		const res = await fetch(HTTP_URL, { method: "POST", body })
 		const cmd: Command = await res.json()
 		return cmd
 	} catch (e) {
@@ -191,7 +186,7 @@ export const deactivateWS = async ({ node }: DeactivateWS): Promise<Command | nu
 	})
 
 	try {
-		const res = await fetch(BASE_URL, { method: "POST", body })
+		const res = await fetch(HTTP_URL, { method: "POST", body })
 		console.log(res)
 		const cmd: Command = await res.json()
 		console.log(cmd)
@@ -219,7 +214,7 @@ export const updateURL = async ({ node, url }: UpdateURL): Promise<Command | nul
 	})
 
 	try {
-		const res = await fetch(BASE_URL, { method: "POST", body })
+		const res = await fetch(HTTP_URL, { method: "POST", body })
 		const cmd: Command = await res.json()
 		return cmd
 	} catch (e) {
@@ -249,7 +244,7 @@ export const updateURL = async ({ node, url }: UpdateURL): Promise<Command | nul
 // 	})
 
 // 	try {
-// 		const res = await fetch(BASE_URL, { method: "POST", body })
+// 		const res = await fetch(HTTP_URL, { method: "POST", body })
 // 		const cmd: Command = await res.json()
 // 		return cmd
 // 	} catch (e) {
